@@ -1,9 +1,19 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { Sidebar } from "./Sidebar";
 import { isAuthenticated } from "@/lib/auth";
 import { Loader2 } from "lucide-react";
+
+const MobileMenuOpenContext = createContext<(() => void) | undefined>(undefined);
+
+export function useMobileMenuOpen() {
+  const context = useContext(MobileMenuOpenContext);
+  if (!context) {
+    throw new Error("useMobileMenuOpen must be used within AppShell");
+  }
+  return context;
+}
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -27,6 +37,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
+    <MobileMenuOpenContext.Provider value={() => setMobileOpen(true)}>
     <div className="flex h-screen overflow-hidden bg-background">
       <Sidebar mobileOpen={mobileOpen} onMobileClose={() => setMobileOpen(false)} />
       <main className="flex-1 flex flex-col min-w-0 overflow-auto">
@@ -39,5 +50,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         )}
       </main>
     </div>
+    </MobileMenuOpenContext.Provider>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { Header } from "@/components/layout/Header";
+import { useMobileMenuOpen } from "@/components/layout/AppShell";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,11 +10,8 @@ import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
 import { Building2, User, Lock, Bell, Palette, Shield, ChevronRight } from "lucide-react";
 
-interface SettingsPageProps {
-  onMobileMenuOpen?: () => void;
-}
-
-export default function SettingsPage({ onMobileMenuOpen }: SettingsPageProps) {
+export default function SettingsPage() {
+  const onMobileMenuOpen = useMobileMenuOpen();
   return (
     <div className="flex flex-col min-h-full">
       <Header

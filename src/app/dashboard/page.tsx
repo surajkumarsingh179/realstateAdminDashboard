@@ -2,17 +2,15 @@
 import React, { useState } from "react";
 import { Users, TrendingUp, Flame, CheckCircle2 } from "lucide-react";
 import { Header } from "@/components/layout/Header";
+import { useMobileMenuOpen } from "@/components/layout/AppShell";
 import { StatCard } from "@/components/dashboard/StatCard";
 import { WeeklyChart } from "@/components/dashboard/WeeklyChart";
 import { StatusChart } from "@/components/dashboard/StatusChart";
 import { RecentLeads } from "@/components/dashboard/RecentLeads";
 import { useLeads } from "@/hooks/useLeads";
 
-interface DashboardPageProps {
-  onMobileMenuOpen?: () => void;
-}
-
-export default function DashboardPage({ onMobileMenuOpen }: DashboardPageProps) {
+export default function DashboardPage() {
+  const onMobileMenuOpen = useMobileMenuOpen();
   const { leads } = useLeads();
 
   const stats = {

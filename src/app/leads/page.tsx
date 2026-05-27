@@ -2,6 +2,7 @@
 import React, { useState, useMemo } from "react";
 import { Plus, Search, Filter, X } from "lucide-react";
 import { Header } from "@/components/layout/Header";
+import { useMobileMenuOpen } from "@/components/layout/AppShell";
 import { LeadsTable } from "@/components/leads/LeadsTable";
 import { LeadForm } from "@/components/leads/LeadForm";
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useLeads } from "@/hooks/useLeads";
 import { Lead, LeadStatus } from "@/types";
 
-interface LeadsPageProps {
-  onMobileMenuOpen?: () => void;
-}
 
 const STATUS_OPTIONS: { value: string; label: string }[] = [
   { value: "all", label: "All Status" },
@@ -32,7 +30,8 @@ const PRIORITY_OPTIONS = [
   { value: "low", label: "Low" },
 ];
 
-export default function LeadsPage({ onMobileMenuOpen }: LeadsPageProps) {
+export default function LeadsPage() {
+  const onMobileMenuOpen = useMobileMenuOpen();
   const { leads, addLead, updateLead, deleteLead } = useLeads();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
