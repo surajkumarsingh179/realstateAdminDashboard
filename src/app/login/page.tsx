@@ -149,7 +149,7 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-6 p-3.5 rounded-lg bg-muted/50 border border-border">
-            <p className="text-xs text-muted-foreground font-medium mb-1.5">Demo Credentials</p>
+            <p className="text-xs text-muted-foreground font-medium mb-1.5">Demo</p>
             <p className="text-xs text-foreground font-mono">admin@brokerfirm.com</p>
             <p className="text-xs text-foreground font-mono">Admin@123</p>
           </div>
